@@ -1,0 +1,192 @@
+/* 基本樣式 */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+}
+
+/* 動畫效果 */
+.animate-bounce {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
+/* 背景漸變 */
+.bg-gradient-to-b {
+    background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+.from-blue-900 {
+    --tw-gradient-from: #1e3a8a;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(30, 58, 138, 0));
+}
+
+.to-blue-950 {
+    --tw-gradient-to: #172554;
+}
+
+/* 自定義文字漸變 */
+.bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.text-transparent {
+    color: transparent;
+}
+
+.bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-orange-300 {
+    --tw-gradient-from: #fdba74;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(253, 186, 116, 0));
+}
+
+.to-orange-400 {
+    --tw-gradient-to: #fb923c;
+}
+
+/* 導航連結和按鈕交互 */
+.nav-link {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 頁面切換動畫 */
+.page {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.page.active {
+    display: block;
+}
+
+/* 課程與文章過濾按鈕 */
+.course-filter,
+.article-filter {
+    transition: all 0.2s ease;
+}
+
+.course-filter.active,
+.article-filter.active {
+    background-color: #f97316; /* orange-500 */
+    color: white;
+}
+
+/* 呼吸引導動畫 */
+@keyframes inhale {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+@keyframes hold {
+    from { transform: scale(1.1); }
+    to { transform: scale(1.1); }
+}
+
+@keyframes exhale {
+    from { transform: scale(1.1); }
+    to { transform: scale(1); }
+}
+
+@keyframes rest {
+    from { transform: scale(1); }
+    to { transform: scale(0.95); }
+}
+
+/* 自定義進度條 */
+#breathing-progress,
+#quiz-progress {
+    transition: width 0.3s ease;
+}
+
+/* 測驗選項交互 */
+.quiz-option {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.quiz-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #f97316; /* orange-500 */
+}
+
+/* 自定義滾動條 */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* 淡入淡出動畫 */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* 點讚按鈕効果 */
+.post-like.liked svg {
+    fill: currentColor;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.875rem !important;
+    }
+    
+    .breathing-circle {
+        width: 8rem !important;
+        height: 8rem !important;
+    }
+}

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瑜悅 ZenYoga | 探索內心的寧靜</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gradient-to-b from-blue-900 to-blue-950 text-white min-h-screen">
+    <div id="app">
+        <!-- 主頁內容 -->
+        <div id="home-page" class="page active">
+            <!-- 導航欄 -->
+            <nav class="container mx-auto max-w-6xl px-4 py-6 flex justify-between items-center relative z-10">
+                <div class="text-2xl font-bold text-orange-300">瑜悅 ZenYoga</div>
+                <div class="flex items-center gap-4 md:gap-6">
+                    <button id="audio-toggle" class="p-2 rounded-full bg-blue-800/50 hover:bg-blue-800/80 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="audio-on hidden"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="audio-off"><path d="M11 5 6 9H2v6h4l5 4V5Z"></path><line x1="22" x2="16" y1="9" y2="15"></line><line x1="16" x2="22" y1="9" y2="15"></line></svg>
+                    </button>
+                    <button class="nav-link text-white hover:text-orange-300" data-target="courses-page">課程</button>
+                    <button class="nav-link text-white hover:text-orange-300" data-target="knowledge-page">知識庫</button>
+                    <button class="nav-link text-white hover:text-orange-300" data-target="quiz-page">瑜伽測驗</button>
+                    <button class="nav-link text-white hover:text-orange-300" data-target="community-page">社群</button>
+                </div>
+            </nav>
+
+            <!-- 竹葉裝飾元素 -->
+            <div class="absolute top-0 right-0 w-48 h-64 opacity-30">
+                <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/075091cc-e9da-4584-999a-86d9ae240cdb.jpg" class="object-cover" alt="Bamboo leaves">
+            </div>
+            <div class="absolute bottom-0 left-0 w-48 h-64 opacity-30">
+                <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/075091cc-e9da-4584-999a-86d9ae240cdb.jpg" class="object-cover" alt="Bamboo leaves">
+            </div>
+
+            <!-- 主視覺 -->
+            <div class="container mx-auto max-w-6xl px-4 py-16 relative z-10">
+                <div class="flex flex-col items-center justify-center text-center min-h-[70vh]">
+                    <div class="mb-8 w-full max-w-xl">
+                        <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/cf85e03e-de0c-4daa-b9e8-1968f655d4bb.jpg" alt="瑜伽與山水" class="w-full object-cover rounded-2xl opacity-85 shadow-lg">
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-orange-400">
+                        尋找內心的寧靜
+                    </h1>
+                    <p class="text-xl mb-8 max-w-2xl text-blue-100">
+                        透過瑜伽的力量，探索內在平靜，連結身心，開啟一段尋找內心平衡的旅程。
+                    </p>
+                    
+                    <div id="breathing-container">
+                        <button id="start-breathing" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-6 text-lg rounded-full shadow-lg transition-all duration-300 hover:shadow-orange-400/30 hover:shadow-xl">
+                            開始呼吸引導
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 向下滾動提示 -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+                    <p class="text-sm mb-2 text-blue-200">探索更多</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-200"><path d="m6 9 6 6 6-6"></path></svg>
+                </div>
+            </div>
+
+            <!-- 三大核心板塊預覽 -->
+            <div class="bg-blue-950 py-16">
+                <div class="container mx-auto max-w-6xl px-4">
+                    <h2 class="text-3xl font-semibold text-center mb-12 text-orange-300">尋找屬於你的瑜伽之路</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- 課程卡片 -->
+                        <div class="bg-gradient-to-b from-blue-900 to-blue-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                            <div class="mb-4 overflow-hidden rounded-lg">
+                                <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/39d6b0a7-c1e9-4dc5-ae25-da8ae7f7490f.jpg" alt="瑜伽課程" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">探索瑜伽課程</h3>
+                            <p class="text-blue-100 mb-4">從初學者到進階，探索不同強度和主題的瑜伽課程，找到適合你的練習。</p>
+                            <button class="nav-link bg-orange-500 hover:bg-orange-600 text-white w-full py-2 px-4 rounded-md" data-target="courses-page">
+                                瀏覽課程
+                            </button>
+                        </div>
+                        
+                        <!-- 知識庫卡片 -->
+                        <div class="bg-gradient-to-b from-blue-900 to-blue-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                            <div class="mb-4 overflow-hidden rounded-lg">
+                                <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/707ce0ca-757f-488b-b7b5-f06cdffa87ae.jpg" alt="瑜伽知識" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">瑜伽知識庫</h3>
+                            <p class="text-blue-100 mb-4">了解瑜伽哲學，探索古老智慧，將瑜伽理念融入現代生活。</p>
+                            <button class="nav-link bg-orange-500 hover:bg-orange-600 text-white w-full py-2 px-4 rounded-md" data-target="knowledge-page">
+                                探索知識
+                            </button>
+                        </div>
+                        
+                        <!-- 社群卡片 -->
+                        <div class="bg-gradient-to-b from-blue-900 to-blue-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                            <div class="mb-4 overflow-hidden rounded-lg">
+                                <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/70e60394-e5af-48f2-a124-e29805524a21.jpg" alt="瑜伽社群" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">全球瑜伽社群</h3>
+                            <p class="text-blue-100 mb-4">加入瑜伽愛好者社區，分享心得，交流體驗，互相鼓勵與支持。</p>
+                            <button class="nav-link bg-orange-500 hover:bg-orange-600 text-white w-full py-2 px-4 rounded-md" data-target="community-page">
+                                加入社群
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 課程頁面 -->
+        <div id="courses-page" class="page hidden">
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <!-- 返回按鈕 -->
+                <div class="mb-8">
+                    <button class="nav-link text-blue-300 hover:text-blue-200 flex items-center" data-target="home-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m15 18-6-6 6-6"></path></svg>
+                        返回首頁
+                    </button>
+                </div>
+                
+                <!-- 頁面標題 -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold mb-4 text-orange-300">探索瑜伽課程</h1>
+                    <p class="text-xl max-w-2xl mx-auto text-blue-100">
+                        從初學者友好的基礎課程到具有挑戰性的高級練習，找到最適合你的瑜伽旅程。
+                    </p>
+                </div>
+                
+                <!-- 課程分類標籤 -->
+                <div class="mb-8 flex justify-center">
+                    <div class="bg-blue-800/50 rounded-md flex space-x-1 p-1">
+                        <button class="course-filter active px-3 py-1 rounded-md text-sm" data-filter="all">全部課程</button>
+                        <button class="course-filter px-3 py-1 rounded-md text-sm" data-filter="beginner">初學者課程</button>
+                        <button class="course-filter px-3 py-1 rounded-md text-sm" data-filter="intermediate">中級課程</button>
+                        <button class="course-filter px-3 py-1 rounded-md text-sm" data-filter="advanced">高級課程</button>
+                    </div>
+                </div>
+                
+                <!-- 課程列表 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 課程1 - 初學者 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="beginner">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/7033c469-6a11-4359-8aec-d59dda028a0f.jpg" alt="晨間喚醒瑜伽" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+                                    初學者
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>15分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">晨間喚醒瑜伽</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">溫和而充滿活力的晨間瑜伽系列，幫助你喚醒身體，開始充滿正能量的一天。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">早晨</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">活力</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">初學者</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 林雨荷</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(1)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 課程2 - 初學者 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="beginner">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/30cab3e5-f363-41a1-a409-ff5a0ab4e179.jpg" alt="深度伸展與放鬆" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+                                    初學者
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>20分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">深度伸展與放鬆</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">專注於深層肌肉伸展的課程，幫助放鬆緊張的身體，特別適合長時間伏案工作後的舒緩。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">伸展</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">舒緩</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">放鬆</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 王靜</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(2)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 課程3 - 中級 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="intermediate">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/57f8d68d-52f7-4218-a1fb-76966c40606f.jpg" alt="力量瑜伽進階" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+                                    中級
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>45分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">力量瑜伽進階</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">增強核心力量和整體肌肉耐力的中高強度課程，適合有一定瑜伽基礎的練習者。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">力量</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">核心</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">挑戰</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 陳強</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(3)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 課程4 - 初學者 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="beginner">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/a9e306fb-bffa-4c80-ab88-f81567c23002.jpg" alt="冥想與正念瑜伽" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+                                    初學者
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>30分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">冥想與正念瑜伽</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">結合呼吸與輕柔動作的冥想練習，幫助平靜心靈，培養正念覺察。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">冥想</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">正念</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">平靜</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 張平和</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(4)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 課程5 - 中級 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="intermediate">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/ea33c869-c2a4-4b25-8e45-0652693891de.jpg" alt="流瑜伽串聯" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+                                    中級
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>60分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">流瑜伽串聯</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">動態流暢的體式串聯，讓呼吸與動作和諧統一，提升專注力與身體協調性。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">流動</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">協調</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">呼吸</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 劉流水</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(5)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 課程6 - 高級 -->
+                    <div class="course-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-level="advanced">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/8580463c-c787-4d0b-8e7e-40e6dbe13441.jpg" alt="高級倒立練習" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-purple-100 text-purple-800">
+                                    高級
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>40分鐘</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">高級倒立練習</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">專注於各種倒立姿勢的高級練習，挑戰平衡能力和核心力量。</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">倒立</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">平衡</span>
+                                <span class="text-xs bg-blue-900/50 text-blue-200 px-2 py-1 rounded-full">高級</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-blue-200 text-sm">導師: 黃天行</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md" onclick="showCourseDetail(6)">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 知識庫頁面 -->
+        <div id="knowledge-page" class="page hidden">
+            <div class="container mx-auto max-w-6xl px-4 py-8">
+                <!-- 返回按鈕 -->
+                <div class="mb-8">
+                    <button class="nav-link text-blue-300 hover:text-blue-200 flex items-center" data-target="home-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m15 18-6-6 6-6"></path></svg>
+                        返回首頁
+                    </button>
+                </div>
+                
+                <!-- 頁面標題 -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold mb-4 text-orange-300">瑜伽知識庫</h1>
+                    <p class="text-xl max-w-2xl mx-auto text-blue-100">
+                        探索瑜伽的深度智慧，從傳統哲學到現代應用，豐富你的瑜伽旅程。
+                    </p>
+                </div>
+                
+                <!-- 搜尋欄 -->
+                <div class="mb-8">
+                    <div class="max-w-md mx-auto">
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-2.5 top-2.5 h-4 w-4 text-blue-300"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                            <input type="search" placeholder="搜尋文章..." id="knowledge-search" class="w-full pl-9 py-2 bg-blue-800/20 border border-blue-700 rounded-md text-white placeholder:text-blue-400">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分類標籤 -->
+                <div class="mb-8">
+                    <div class="flex justify-center">
+                        <div class="bg-blue-800/50 rounded-md flex space-x-1 p-1">
+                            <button class="article-filter active px-3 py-1 rounded-md text-sm" data-filter="all">全部</button>
+                            <button class="article-filter px-3 py-1 rounded-md text-sm" data-filter="philosophy">瑜伽哲學</button>
+                            <button class="article-filter px-3 py-1 rounded-md text-sm" data-filter="poses">體式解析</button>
+                            <button class="article-filter px-3 py-1 rounded-md text-sm" data-filter="lifestyle">生活方式</button>
+                            <button class="article-filter px-3 py-1 rounded-md text-sm" data-filter="wellness">健康養生</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 文章列表 -->
+                <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 文章1 -->
+                    <div class="article-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-category="philosophy">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/824e047e-11ec-4f8a-be8b-3f7be3d13662.jpg" alt="瑜伽呼吸法的科學原理" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-700/50 text-blue-200">
+                                    瑜伽哲學
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>5分鐘閱讀</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">瑜伽呼吸法的科學原理</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">探索瑜伽呼吸技巧背後的科學依據，了解它如何影響神經系統和身心健康。</p>
+                            
+                            <div class="flex justify-between items-center mt-auto">
+                                <span class="text-blue-200 text-sm">2025年5月15日</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center" onclick="showArticleDetail(1)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                    閱讀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章2 -->
+                    <div class="article-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-category="lifestyle">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/4e14afae-8a6e-4c7b-aa37-ef408f06d715.jpg" alt="瑜伽與現代生活：找到平衡" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-700/50 text-blue-200">
+                                    生活方式
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>7分鐘閱讀</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">瑜伽與現代生活：找到平衡</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">在忙碌的現代生活中如何將瑜伽原則和練習融入日常，創造更平衡的生活方式。</p>
+                            
+                            <div class="flex justify-between items-center mt-auto">
+                                <span class="text-blue-200 text-sm">2025年5月10日</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center" onclick="showArticleDetail(2)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                    閱讀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 更多文章... -->
+                    <div class="article-card bg-blue-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col" data-category="poses">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/0c2d4eec-5611-4c86-be17-51f06773342f.jpg" alt="瑜伽體式解析：站立姿勢系列" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-700/50 text-blue-200">
+                                    體式解析
+                                </span>
+                                <div class="flex items-center ml-auto text-blue-300 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>6分鐘閱讀</span>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-semibold mb-2 text-orange-300">瑜伽體式解析：站立姿勢系列</h3>
+                            <p class="text-blue-100 mb-4 text-sm flex-grow">深入了解常見站立瑜伽姿勢的細節，正確的對齊方式以及它們帶來的身體益處。</p>
+                            
+                            <div class="flex justify-between items-center mt-auto">
+                                <span class="text-blue-200 text-sm">2025年5月5日</span>
+                                <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center" onclick="showArticleDetail(3)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                                    閱讀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 瑜伽測驗頁面 -->
+        <div id="quiz-page" class="page hidden">
+            <div class="container mx-auto max-w-4xl px-4 py-8">
+                <!-- 返回按鈕 -->
+                <div class="mb-8">
+                    <button class="nav-link text-blue-300 hover:text-blue-200 flex items-center" data-target="home-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m15 18-6-6 6-6"></path></svg>
+                        返回首頁
+                    </button>
+                </div>
+                
+                <!-- 頁面標題 -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold mb-4 text-orange-300">你的瑜伽Vibe測驗</h1>
+                    <p class="text-xl max-w-2xl mx-auto text-blue-100">
+                        透過這個有趣的測驗，了解你的瑜伽性格類型，找到最適合你的瑜伽方式。
+                    </p>
+                </div>
+
+                <!-- 測驗區域 -->
+                <div id="quiz-container">
+                    <!-- 測驗開始畫面 -->
+                    <div id="quiz-start" class="text-center">
+                        <img src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/cf85e03e-de0c-4daa-b9e8-1968f655d4bb.jpg" alt="瑜伽測驗" class="w-40 h-40 object-cover rounded-full mx-auto mb-6">
+                        <h2 class="text-2xl font-semibold mb-4 text-orange-300">準備好了解你的瑜伽個性嗎？</h2>
+                        <p class="text-blue-100 mb-8 max-w-md mx-auto">
+                            這個測驗會根據你的生活習慣、偏好和個性特點，分析出最適合你的瑜伽風格和練習方式。
+                        </p>
+                        <button id="start-quiz" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md">
+                            開始測驗
+                        </button>
+                    </div>
+
+                    <!-- 測驗問題區 -->
+                    <div id="quiz-questions" class="hidden">
+                        <div class="mb-8">
+                            <div class="h-2 bg-blue-800/30 rounded-full overflow-hidden">
+                                <div id="quiz-progress" class="h-full bg-orange-500 transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between mt-2 text-sm text-blue-300">
+                                <span id="question-counter">問題 1 / 5</span>
+                                <span id="progress-percentage">0% 完成</span>
+                            </div>
+                        </div>
+
+                        <!-- 問題容器 -->
+                        <div id="question-container" class="transition-opacity duration-300">
+                            <h2 id="question-text" class="text-2xl font-semibold mb-6 text-center text-orange-300">
+                                早晨醒來，你最想做的第一件事是？
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <!-- 選項將由JS動態生成 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 測驗結果區 -->
+                    <div id="quiz-result" class="hidden bg-blue-800/30 rounded-xl p-8">
+                        <!-- 結果將由JS動態生成 -->
+                    </div>
+
+                    <!-- 加載狀態 -->
+                    <div id="quiz-loading" class="hidden text-center py-16">
+                        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-orange-300 mx-auto mb-6"></div>
+                        <p class="text-xl text-blue-100">分析你的瑜伽性格中...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社群頁面 -->
+        <div id="community-page" class="page hidden">
+            <div class="container mx-auto max-w-4xl px-4 py-8">
+                <!-- 返回按鈕 -->
+                <div class="mb-8">
+                    <button class="nav-link text-blue-300 hover:text-blue-200 flex items-center" data-target="home-page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="m15 18-6-6 6-6"></path></svg>
+                        返回首頁
+                    </button>
+                </div>
+                
+                <!-- 頁面標題 -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold mb-4 text-orange-300">瑜伽社群</h1>
+                    <p class="text-xl max-w-2xl mx-auto text-blue-100">
+                        加入我們的全球瑜伽社群，分享你的練習經歷，向其他瑜伽愛好者學習。
+                    </p>
+                </div>
+                
+                <!-- 發布新帖子 -->
+                <div class="bg-blue-800/30 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4 text-orange-300">分享你的瑜伽時刻</h2>
+                    <textarea 
+                        placeholder="分享你的瑜伽體驗、問題或想法..." 
+                        id="new-post-text"
+                        class="w-full bg-blue-800/20 border border-blue-700 text-white placeholder:text-blue-400 mb-4 min-h-[100px] p-3 rounded-md"
+                    ></textarea>
+                    <div class="flex justify-end">
+                        <button id="publish-post" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                            發佈
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 社群帖子列表 -->
+                <div id="posts-container" class="space-y-6">
+                    <!-- 帖子1 -->
+                    <div class="bg-blue-800/30 rounded-xl p-6 transition-all duration-300 hover:shadow-lg">
+                        <!-- 作者信息和日期 -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img 
+                                    src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/acd31ab4-d668-474e-a909-504a5fd083a0.jpg" 
+                                    alt="王心如"
+                                    class="w-10 h-10 rounded-full object-cover mr-3" 
+                                />
+                                <div>
+                                    <p class="text-orange-200 font-medium">王心如</p>
+                                    <p class="text-blue-300 text-sm">2025年6月18日</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 帖子内容 -->
+                        <p class="text-blue-100 mb-4">今天完成了"晨間喚醒瑜伽"課程，感覺整個人都精神了！特別是最後的呼吸環節，真的很有幫助。有人和我一樣喜歡晨練嗎？</p>
+                        
+                        <!-- 帖子图片（如果有） -->
+                        <div class="rounded-lg overflow-hidden mb-4">
+                            <img 
+                                src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/0dcb8861-1080-4274-83fd-ba3188a76c52.jpg" 
+                                alt="Post image" 
+                                class="w-full h-auto object-cover"
+                            />
+                        </div>
+                        
+                        <!-- 互动按钮 -->
+                        <div class="flex items-center space-x-4 text-blue-300">
+                            <button class="post-like flex items-center gap-2 text-blue-300 hover:text-orange-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                <span class="like-count">24</span>
+                            </button>
+                            <button class="flex items-center gap-2 text-blue-300 hover:text-blue-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                <span>5</span>
+                            </button>
+                            <button class="flex items-center gap-2 text-blue-300 hover:text-blue-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 帖子2 -->
+                    <div class="bg-blue-800/30 rounded-xl p-6 transition-all duration-300 hover:shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <img 
+                                    src="https://pub-cdn.sider.ai/u/U0X7H8L9A0Y/web-coder/6853b778ccf15b0e0c745f9b/resource/9faafcad-f4f9-41d4-9e32-67c50d59b1ec.jpg" 
+                                    alt="李明"
+                                    class="w-10 h-10 rounded-full object-cover mr-3" 
+                                />
+                                <div>
+                                    <p class="text-orange-200 font-medium">李明</p>
+                                    <p class="text-blue-300 text-sm">2025年6月17日</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-blue-100 mb-4">請教一個問題：練習"下犬式"時，我的手腕經常感到不適。有沒有人能分享一些保護手腕的技巧？或者有替代的姿勢推薦？</p>
+                        
+                        <div class="flex items-center space-x-4 text-blue-300">
+                            <button class="post-like flex items-center gap-2 text-blue-300 hover:text-orange-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                <span class="like-count">15</span>
+                            </button>
+                            <button class="flex items-center gap-2 text-blue-300 hover:text-blue-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                <span>8</span>
+                            </button>
+                            <button class="flex items-center gap-2 text-blue-300 hover:text-blue-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 呼吸引導模態框 -->
+        <div id="breathing-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center">
+            <div class="bg-blue-900 rounded-xl p-8 max-w-md w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-semibold text-orange-300">呼吸引導</h3>
+                    <button id="close-breathing" class="text-blue-300 hover:text-orange-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <div id="breathing-guide-start" class="text-center">
+                    <p class="mb-6 text-blue-100">
+                        透過幾個簡單的深呼吸循環，讓身心回歸平靜。準備好了嗎？
+                    </p>
+                    <button id="begin-breathing" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-4 rounded-md">
+                        開始
+                    </button>
+                </div>
+                
+                <div id="breathing-guide-active" class="hidden flex flex-col items-center w-full">
+                    <div id="breathing-phase-text" class="mb-2 text-lg font-medium text-orange-300">
+                        第 1/3 組 - 吸氣
+                    </div>
+                    
+                    <div class="relative mb-8">
+                        <div id="breathing-circle" class="w-48 h-48 rounded-full bg-gradient-to-r from-blue-400 to-orange-400 flex items-center justify-center transition-transform duration-1000 ease-in-out scale-100">
+                            <div class="w-40 h-40 rounded-full bg-blue-900 flex items-center justify-center">
+                                <div id="breathing-timer" class="text-4xl font-bold text-white">4</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full h-2 bg-blue-800 rounded-full mb-6">
+                        <div id="breathing-progress" class="h-full bg-orange-500 rounded-full" style="width: 0%"></div>
+                    </div>
+                    
+                    <button id="stop-breathing" class="border border-orange-400 text-orange-400 hover:bg-orange-400/10 px-4 py-2 rounded-md">
+                        結束練習
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
